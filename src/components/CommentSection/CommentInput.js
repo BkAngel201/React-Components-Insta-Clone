@@ -3,12 +3,15 @@ import React from 'react';
 
 const CommentInput = props => {
   return (
-    <form className="comment-form" onSubmit={props.submitComment}>
+    <form className="comment-form" onSubmit={(e) => {
+      e.preventDefault()
+      props.submitComment('LocalUser', props.comment)
+    }}>
       <input
         type="text"
         value={props.comment}
         placeholder="Add comment... "
-        onChange={props.changeComment}
+        onChange={(e) => {props.changeComment(e.target.value)}}
       />
     </form>
   );
